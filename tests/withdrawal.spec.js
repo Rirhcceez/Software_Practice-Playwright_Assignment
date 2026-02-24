@@ -69,8 +69,13 @@ test("withdraw with invalid amount (99.1 Baht)", async ({ page }) => {
   await expect(page.getByPlaceholder('0')).toHaveJSProperty('validationMessage', 'Value must be greater than or equal to 100.');
 });
 
-test("withdraw with invalid amount (101 Baht)", async ({ page }) => {
-  await page.getByPlaceholder('0').fill('101');
-  await page.getByRole('button', { name: 'ถอนเงิน ฿' }).click();
-  await expect(page.getByPlaceholder('0')).toHaveJSProperty('validationMessage', 'Plese enter a valid value. The two nearest valid values are');
+test("withdraw with invalid amount that are not multiple of 100 (every range)", async ({ page }) => {
+    const invalidAmounts = [150, 250, 550, 1050, 2050, 5050, 10050, 20050];
+    for (const invalidAmount of invalidAmounts) {
+        const lowerValid = Math.floor(invalidAmount / 100) * 100;
+        const upperValid = Math.ceil(invalidAmount / 100) * 100;
+        await page.getByPlaceholder('0').fill(invalidAmount.toString());
+        await page.getByRole('button', { name: 'ถอนเงิน ฿' }).click();
+        await expect(page.getByPlaceholder('0')).toHaveJSProperty('validationMessage', `Please enter a valid value. The two nearest valid values are ${lowerValid} and ${upperValid}.`);
+    }
 });
