@@ -2,7 +2,6 @@
 
 This repository contains a suite of automated end-to-end (E2E) tests built using **Playwright** and **JavaScript**. The project is designed to demonstrate proficiency in modern web testing practices, focusing on robust script creation, utility integration, and cross-browser validation.
 
----
 
 ## 🚀 Features
 
@@ -12,7 +11,6 @@ This repository contains a suite of automated end-to-end (E2E) tests built using
 * **Parallel Execution:** Optimized via `playwright.config.js` to run tests concurrently for faster feedback.
 * **Detailed Reporting:** Integrated HTML and List reporters for clear execution insights.
 
----
 
 ## 🛠️ Tech Stack
 
@@ -20,7 +18,6 @@ This repository contains a suite of automated end-to-end (E2E) tests built using
 * **Language:** JavaScript (Node.js)
 * **Environment:** Unix/Linux compatible
 
----
 
 ## 📂 Project Structure
 
@@ -31,6 +28,7 @@ This repository contains a suite of automated end-to-end (E2E) tests built using
 ├── package.json        # Dependencies and test scripts
 └── .gitignore          # Files excluded from version control
 ```
+
 
 ## ⚙️ Installation & Setup
 
@@ -50,6 +48,7 @@ This repository contains a suite of automated end-to-end (E2E) tests built using
     ``` Bash
     npx playwright install
     ```
+
 
 ## 🧪 Running Tests
 
@@ -72,6 +71,7 @@ This repository contains a suite of automated end-to-end (E2E) tests built using
     ```Bash
     npx playwright show-report
     ```
+
 
 ## 📝 Configuration
 
