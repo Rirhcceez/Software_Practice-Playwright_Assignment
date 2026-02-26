@@ -54,7 +54,6 @@ export async function performTransfer(page, amount, method, username) {
       const expectedBalanceNumber = currentBalanceNumber - amountNumber; // 50001
       const expectedBalanceText = expectedBalanceNumber.toLocaleString('en-US', { minimumFractionDigits: 2 });
       
-      await page.getByRole('textbox', { name: 'กรอกหมายเลขบัญชี 6 หลัก' }).click();
       await page.getByRole('textbox', { name: 'กรอกหมายเลขบัญชี 6 หลัก' }).fill(username.toString());
 
       if (method === 'fill') {
@@ -64,7 +63,6 @@ export async function performTransfer(page, amount, method, username) {
             await page.getByRole('button', { name: amount }).click();
       }
       
-      await page.getByRole('textbox', { name: 'เช่น เงินค่าอาหาร, ค่าเช่าบ้าน' }).click();
       await page.getByRole('textbox', { name: 'เช่น เงินค่าอาหาร, ค่าเช่าบ้าน' }).fill('Example Note');
       await page.getByRole('button', { name: 'โอนเงิน ฿' }).click();
 
