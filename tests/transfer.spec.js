@@ -102,9 +102,25 @@ test("transfer with exceed current balance (50,001 Baht)", async ({ page }) => {
 
 // ===== invalid recipient account number ======
 
-test("transfer with exceed current balance (50,001 Baht)", async ({ page }) => {
+test("transfer to not existing account", async ({ page }) => {
     await page.getByRole('textbox', { name: 'กรอกหมายเลขบัญชี 6 หลัก' }).fill('111111');
     await page.getByPlaceholder('0').fill('50001');
     await page.getByRole('textbox', { name: 'เช่น เงินค่าอาหาร, ค่าเช่าบ้าน' }).fill('Example Note');
+    await expect(page.getByRole('button', { name: 'โอนเงิน ฿' })).toBeDisabled();
+});
+
+// ===== invalid note ======
+
+test("transfer with invalid note (empty)", async ({ page }) => {
+    await page.getByRole('textbox', { name: 'กรอกหมายเลขบัญชี 6 หลัก' }).fill('789012');
+    await page.getByPlaceholder('0').fill('50001');
+    await page.getByRole('textbox', { name: 'เช่น เงินค่าอาหาร, ค่าเช่าบ้าน' }).fill('');
+    await expect(page.getByRole('button', { name: 'โอนเงิน ฿' })).toBeDisabled();
+});
+
+test("transfer with invalid note (too long)", async ({ page }) => {
+    await page.getByRole('textbox', { name: 'กรอกหมายเลขบัญชี 6 หลัก' }).fill('789012');
+    await page.getByPlaceholder('0').fill('50001');
+    await page.getByRole('textbox', { name: 'เช่น เงินค่าอาหาร, ค่าเช่าบ้าน' }).fill('1111111111111111111111111111111111111111111111111111');
     await expect(page.getByRole('button', { name: 'โอนเงิน ฿' })).toBeDisabled();
 });
