@@ -12,7 +12,6 @@ test.beforeEach(async ({ page }) => {
     await page.getByRole("button", { name: "เข้าสู่ระบบ" }).click();
     await expect(page.getByRole("heading", { name: "ยอดเงินคงเหลือ" })).toBeVisible();
 
-    //go to deposit page
     await page.getByRole('heading', { name: 'ฝากเงิน' }).click();
     await page.getByPlaceholder('0').click();
 });

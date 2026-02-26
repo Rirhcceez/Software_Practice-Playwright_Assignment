@@ -12,7 +12,6 @@ test.beforeEach(async ({ page }) => {
     await page.getByRole("button", { name: "เข้าสู่ระบบ" }).click();
     await expect(page.getByRole("heading", { name: "ยอดเงินคงเหลือ" })).toBeVisible();
 
-    //go to withdrawal page
     await page.getByRole('heading', { name: 'ถอนเงิน' }).click();
     await page.getByPlaceholder('0').click();
 });
@@ -58,7 +57,7 @@ test("withdraw with valid amount (20,000 Baht)", async ({ page }) => {
 // ====== invalid withdrawal amount ======
 
 test("withdraw with invalid amount (99 Baht)", async ({ page }) => {
-  await page.getByPlaceholder('0').fill('99');
+  await page.getByPlaceholder('0').fill('99');  
   await page.getByRole('button', { name: 'ถอนเงิน ฿' }).click();
   await expect(page.getByPlaceholder('0')).toHaveJSProperty('validationMessage', 'Value must be greater than or equal to 100.');
 });
